@@ -29,7 +29,7 @@
         const input = document.getElementById('userKey').value;
         const message = document.getElementById('message');
         
-        // আপনার Key ডাটাবেজ
+        // আপনার কী ডাটাবেজ
         const database = {
             "admin:plusx101": "2026-12-31",
             "demo:test": "2026-12-31"
@@ -40,11 +40,11 @@
             message.innerHTML = "Login Success! Opening App...";
 
             setTimeout(() => {
+                // আপনার Smali কোড অনুযায়ী closeDialog() কল করা হচ্ছে
                 if (window.Android && typeof window.Android.closeDialog === "function") {
-                    [span_0](start_span)// আপনার Smali কোড অনুযায়ী সঠিক মেথড হলো closeDialog[span_0](end_span)
-                    window.Android.closeDialog();
+                    window.Android.closeDialog(); 
                 } else {
-                    alert("Login Success! (Running in Browser)");
+                    alert("App detected, but interface missing.");
                 }
             }, 1500);
         } else {

@@ -8,10 +8,8 @@
         body { background: #050510; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
         .login-box { width: 320px; padding: 30px; background: #141423; border: 1px solid #7000ff; border-radius: 20px; text-align: center; box-shadow: 0 0 25px rgba(112, 0, 255, 0.4); }
         .logo { font-size: 26px; font-weight: bold; color: #00f2ff; text-shadow: 0 0 10px #7000ff; margin-bottom: 25px; letter-spacing: 2px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #1a1a2e; border: 1px solid #333; color: #fff; border-radius: 10px; box-sizing: border-box; outline: none; transition: 0.3s; }
-        input:focus { border-color: #00f2ff; box-shadow: 0 0 8px #00f2ff; }
-        button { width: 100%; padding: 14px; background: linear-gradient(45deg, #7000ff, #00f2ff); border: none; color: white; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 15px; text-transform: uppercase; transition: 0.3s; }
-        button:active { transform: scale(0.98); }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #1a1a2e; border: 1px solid #333; color: #fff; border-radius: 10px; box-sizing: border-box; outline: none; }
+        button { width: 100%; padding: 14px; background: linear-gradient(45deg, #7000ff, #00f2ff); border: none; color: white; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
         #message { margin-top: 20px; font-size: 14px; font-weight: bold; min-height: 40px; }
         .footer-link { margin-top: 20px; display: block; color: #aaa; text-decoration: none; font-size: 12px; }
     </style>
@@ -23,7 +21,7 @@
     <input type="text" id="userKey" placeholder="USERNAME:KEY">
     <button onclick="validateLogin()">LOGIN NOW</button>
     <div id="message"></div>
-    <a href="https://t.me/your_telegram" class="footer-link">Get License Key (Telegram)</a>
+    [span_0](start_span)<a href="https://t.me/SuperHack8" class="footer-link">Get License Key (Telegram)</a>[span_0](end_span)
 </div>
 
 <script>
@@ -33,8 +31,7 @@
         
         // Key Database (Key: Expire-Date)
         const database = {
-            "admin:plusx101": "2026-12-31",
-            "user1:free7": "2024-05-10",  
+            "admin:plusx101": "2026-05-10",
             "demo:test": "2026-05-10"     
         };
 
@@ -44,6 +41,29 @@
 
             if (today <= expireDate) {
                 message.style.color = "#00ff00";
+                message.innerHTML = "Login Success! Opening App...";
+                
+                // আপনার দেওয়া নির্দিষ্ট কোডটি এখানে যুক্ত করা হয়েছে
+                setTimeout(() => {
+                    [span_1](start_span)if (window.Android && window.Android.dismiss) {[span_1](end_span)
+                        window.Android.dismiss(); [span_2](start_span)// এটি অ্যাপের ডায়ালগ বন্ধ করবে[span_2](end_span)
+                    } else {
+                        alert("Login Success! (Running in Browser)");
+                    }
+                }, 1500);
+            } else {
+                message.style.color = "#ff4444";
+                message.innerHTML = "Key Expired on: " + database[input];
+            }
+        } else {
+            message.style.color = "#ff4444";
+            message.innerHTML = "Invalid Username or Key!";
+        }
+    }
+</script>
+
+</body>
+</html>
                 message.innerHTML = "Login Success! Loading App...<br>Expires: " + database[input];
                 
                 // অ্যাপের সাথে কানেক্ট করার লজিক

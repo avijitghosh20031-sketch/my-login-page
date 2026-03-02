@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlusX Premium Login</title>
+    <style>
+        /* স্টাইল আগের মতোই থাকবে */
+        body { background: #050510; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { width: 320px; padding: 30px; background: #141423; border: 1px solid #7000ff; border-radius: 15px; text-align: center; box-shadow: 0 0 20px rgba(112, 0, 255, 0.3); }
+        .logo { font-size: 24px; font-weight: bold; color: #00f2ff; text-shadow: 0 0 10px #7000ff; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; background: #1a1a2e; border: 1px solid #333; color: #fff; border-radius: 8px; box-sizing: border-box; outline: none; }
+        button { width: 100%; padding: 12px; background: linear-gradient(45deg, #7000ff, #00f2ff); border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+        #message { margin-top: 20px; font-size: 14px; font-weight: bold; }
+        .buy-key { margin-top: 15px; display: block; color: #aaa; text-decoration: none; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <div class="logo">PLUSX PREMIUM</div>
+    <input type="text" id="userKey" placeholder="USERNAME:KEY">
+    <button onclick="validateLogin()">LOGIN NOW</button>
+    <div id="message"></div>
+    <a href="https://t.me/your_link" class="buy-key">Get License Key (Telegram)</a>
+</div>
+
+<script>
+    function validateLogin() {
+        const input = document.getElementById('userKey').value;
+        const message = document.getElementById('message');
+        
+        // Key এবং তাদের এক্সপায়ার ডেট (YYYY-MM-DD ফরম্যাটে)
+        const database = {
+            "admin:plusx101": "2026-05-10",
+            "user1:free7": "2026-05-10",  
+            "demo:test": "2026-05-10"     
+        };
+
+        if (database[input]) {
+            const expireDate = new Date(database[input]);
+            const today = new Date();
+
+            if (today <= expireDate) {
+                message.style.color = "#00ff00";
+                message.innerHTML = "Login Success!<br>Expires: " + database[input];
+                
+                // অ্যাপের ভেতর প্রবেশের জন্য এখানে আপনার কোড দিন
+                setTimeout(() => { alert("Welcome!"); }, 1000);
+            } else {
+                message.style.color = "#ff4444";
+                message.innerHTML = "Key Expired on: " + database[input];
+            }
+        } else {
+            message.style.color = "#ff4444";
+            message.innerHTML = "Invalid Username or Key!";
+        }
+    }
+</script>
+
+</body>
+</html>

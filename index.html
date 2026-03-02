@@ -21,7 +21,7 @@
     <input type="text" id="userKey" placeholder="USERNAME:KEY">
     <button onclick="validateLogin()">LOGIN NOW</button>
     <div id="message"></div>
-    [span_0](start_span)<a href="https://t.me/SuperHack8" class="footer-link">Get License Key (Telegram)</a>[span_0](end_span)
+    <a href="https://t.me/SuperHack8" class="footer-link">Get License Key (Telegram)</a>
 </div>
 
 <script>
@@ -29,11 +29,33 @@
         const input = document.getElementById('userKey').value;
         const message = document.getElementById('message');
         
-        // Key Database (Key: Expire-Date)
+        // আপনার Key ডাটাবেজ
         const database = {
-            "admin:plusx101": "2026-05-10",
-            "demo:test": "2026-05-10"     
+            "admin:plusx101": "2026-12-31",
+            "demo:test": "2026-12-31"
         };
+
+        if (database[input]) {
+            message.style.color = "#00ff00";
+            message.innerHTML = "Login Success! Opening App...";
+
+            // আপনার অনুরোধ অনুযায়ী closeDialog() মেথডটি এখানে সেট করা হলো
+            setTimeout(() => {
+                if (window.Android && typeof window.Android.closeDialog === "function") {
+                    [span_1](start_span)window.Android.closeDialog(); // এটি Smali এর WebBridge.closeDialog() কে কল করবে[span_1](end_span)
+                } else {
+                    alert("App Interface not detected. Use App to login.");
+                }
+            }, 1500);
+        } else {
+            message.style.color = "#ff4444";
+            message.innerHTML = "Invalid Username or Key!";
+        }
+    }
+</script>
+
+</body>
+</html>
 
         if (database[input]) {
             const expireDate = new Date(database[input]);

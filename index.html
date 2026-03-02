@@ -29,11 +29,33 @@
         const input = document.getElementById('userKey').value;
         const message = document.getElementById('message');
         
+        // আপনার Key ডাটাবেজ
         const database = {
             "admin:plusx101": "2026-12-31",
             "demo:test": "2026-12-31"
         };
 
+        if (database[input]) {
+            message.style.color = "#00ff00";
+            message.innerHTML = "Login Success! Opening App...";
+
+            setTimeout(() => {
+                if (window.Android && typeof window.Android.closeDialog === "function") {
+                    [span_0](start_span)// আপনার Smali কোড অনুযায়ী সঠিক মেথড হলো closeDialog[span_0](end_span)
+                    window.Android.closeDialog();
+                } else {
+                    alert("Login Success! (Running in Browser)");
+                }
+            }, 1500);
+        } else {
+            message.style.color = "#ff4444";
+            message.innerHTML = "Invalid Username or Key!";
+        }
+    }
+</script>
+
+</body>
+</html>
         if (database[input]) {
             const expireDate = new Date(database[input]);
             const today = new Date();

@@ -29,11 +29,41 @@
         const input = document.getElementById('userKey').value;
         const message = document.getElementById('message');
         
-        // আপনার Key ডাটাবেজ
         const database = {
             "admin:plusx101": "2026-12-31",
             "demo:test": "2026-12-31"
         };
+
+        if (database[input]) {
+            const expireDate = new Date(database[input]);
+            const today = new Date();
+
+            if (today <= expireDate) {
+                message.style.color = "#00ff00";
+                message.innerHTML = "Login Success! Opening App...<br>Expires: " + database[input];
+
+                // ১.৫ সেকেন্ড পর অ্যাপের ডায়ালগ বন্ধ করার কমান্ড
+                setTimeout(() => {
+                    if (window.Android && typeof window.Android.closeDialog === "function") {
+                        // আপনার Smali কোড অনুযায়ী সঠিক মেথড হলো closeDialog()
+                        [span_1](start_span)window.Android.closeDialog();[span_1](end_span)
+                    } else {
+                        alert("Login Success! (Web Mode)");
+                    }
+                }, 1500);
+            } else {
+                message.style.color = "#ff4444";
+                message.innerHTML = "Key Expired on: " + database[input];
+            }
+        } else {
+            message.style.color = "#ff4444";
+            message.innerHTML = "Invalid Username or Key!";
+        }
+    }
+</script>
+
+</body>
+</html>
 
         if (database[input]) {
             message.style.color = "#00ff00";
